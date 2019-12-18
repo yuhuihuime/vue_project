@@ -6,7 +6,13 @@ import {
     RECEIVE_SHOPS,
     RECEIVE_USER,
     RECEIVE_TOKEN,
+    RESET_USER,
+    RESET_TOKEN,
+    RECEIVE_GOODS,
+    RECEIVE_RATINGS,
+    RECEIVE_INFO
 } from './mutations-type'
+
 
 export default{
     [RECEIVE_ADDRESS](state,address){        
@@ -23,6 +29,21 @@ export default{
     },
     [RECEIVE_TOKEN](state,token){
         state.token = token
+    },
+    [RESET_USER](state,user){
+        state.user = {}
+    },
+    [RESET_TOKEN](state,token){
+        state.token = ''
+    },
+    [RECEIVE_GOODS](state,{goods}){
+        state.goods = goods
+    },
+    [RECEIVE_RATINGS](state,{ratings}){
+        state.ratings = ratings
+    },
+    [RECEIVE_INFO](state,{info}){
+        state.info = info
     },
 
 }

@@ -30,7 +30,7 @@
           <img src="./images/msite_back.svg">               
         </nav>
         <!--首页附近商家-->
-        <div class="msite_shop_list">
+        <div class="msite_shop_list" @click="$router.push('/shop/goods')">
           <div class="shop_header">
             <i class="iconfont icon-xuanxiang"></i>
             <span class="shop_header_title">附近商家</span>

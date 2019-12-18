@@ -8,7 +8,8 @@
   import FooterGuide from './components/FooterGuide/FooterGuide' 
   export default {
     mounted(){
-         
+     //尽量早的实现自动登录效果
+         this.$store.dispatch('reqAutoLogin')
     },
    components:{
      FooterGuide

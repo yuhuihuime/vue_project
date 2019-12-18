@@ -47,20 +47,21 @@
                 <section class="login_message">
                   <input type="text" maxlength="11" placeholder="验证码" v-model="captcha" name="mycaptcha" v-validate="{required: true,regex: /^[0-9a-zA-Z]{4}$/}">
 
-                  <img class="get_verification" src="http://localhost:4000/captcha" alt="captcha" @click="updateImage" >
+                  <img class="get_verification" src="http://localhost:4000/captcha" alt="captcha" @click="updateImage" ref='codeImg'>
 
                   <span style="color: red;" v-show="errors.has('mycaptcha')">{{ errors.first('mycaptcha') }}</span>
 
                 </section>
               </section>
             </div>
-            <button class="login_submit" @click.prevent="login">登录</button>
+            <button class="login_submit" @click.prevent="login">{{$t('login_login')}}</button>
           </form>
-          <a href="javascript:;" class="about_us">关于我们</a>
+          <a href="javascript:;" class="about_us">{{$t('login_aboutUs')}}</a>
         </div>
         <a href="javascript:" class="go_back" @click="$router.back()">
           <i class="iconfont icon-jiantou2"></i>
         </a>
+        <button @click = 'toggleLanguage'>切换语言</button>
       </div>
     </section>
 </template>
@@ -147,6 +148,7 @@
               result = await reqSmsLogin({phone,code})
             }else{
               result = await reqPwdLogin({name,pwd,captcha})
+              this.$refs.codeImg.src = 'http://localhost:4000/captcha?name='+Date.now()
             }
             //对结果进行统一处理
             if(result.code===0){
@@ -171,6 +173,13 @@
             }          
           }
           
+        },
+
+        toggleLanguage(){
+          let locale = this.$i18n.locale === 'en'?'zh_CN':'en'
+          this.$i18n.locale = locale
+          //需要在设置切换语言时存储到本地   刷新时语言不换
+          localStorage.setItem('language_key',locale)
         }
     
       }

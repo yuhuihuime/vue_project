@@ -23,3 +23,11 @@ export const reqPwdLogin = ({name,pwd,captcha})=>axios.post('/login_pwd',{name,p
 //       captcha
 //     }
 //   })
+
+//请求自动登录的
+export const reqAutoLogin = ()=>axios('/auto_login')
+
+//请求商铺商品详情页面
+export const reqShopGoods = ()=>axios('/goods')
+export const reqShopRatings = ()=>axios('/ratings')
+export const reqShopInfo = ()=>axios('/info')

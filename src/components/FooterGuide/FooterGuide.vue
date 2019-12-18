@@ -6,7 +6,7 @@
         <span class="item_icon">
           <i class="iconfont icon-Homehomepagemenu">&#xe9db;</i>
         </span>       
-        <span>外卖
+        <span>{{$t('footer_home')}}
           <!-- <router-link to = '/msite'>外卖</router-link> -->
         </span>
       </a>
@@ -15,7 +15,7 @@
         <span class="item_icon">
           <i class="iconfont icon-OrderHistory">&#xe65c;</i>
         </span>
-        <span>搜索
+        <span>{{$t('footer_search')}}
           <!-- <router-link :active="isActive" to = '/search'>搜索</router-link> -->
         </span>
       </a>
@@ -24,7 +24,7 @@
         <span class="item_icon">
           <i class="iconfont icon-profilehover">&#xe61d;</i>
         </span>
-        <span>订单
+        <span>{{$t('footer_order')}}
           <!-- <router-link :active="isActive" to = '/order'>订单</router-link> -->
         </span>
       </a>
@@ -32,7 +32,7 @@
         <span class="item_icon">
           <i class="iconfont icon-search"></i>
         </span>
-        <span>我的
+        <span>{{$t('footer_own')}}
           <!-- <router-link :active="isActive" to = '/profile'>我的</router-link> -->
         </span>
       </a>

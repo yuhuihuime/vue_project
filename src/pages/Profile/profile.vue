@@ -88,13 +88,33 @@
             </div>
           </a>
         </section>
+        <mt-button type="danger" size="large" @click="logout">退出登录</mt-button>
     </section>
 </template>
 <script>
 import {mapState} from 'vuex'
+import {MessageBox} from 'mint-ui'
+
 export default {
   computed:{
     ...mapState(['user'])
+  },
+  methods:{
+    logout(){
+      //如果只在本组件退出登录会导致state中的user与token无法清除，
+      //所以需要在vuex中的action中退出登录，清除本地以及状态里的用户信息,在组件中分发actions
+
+      //清除本地的token信息（用户）
+      MessageBox.confirm('确定执行此操作?').then(
+        ()=>{//promise返回的有成功的回调
+          this.$store.dispatch('logout')
+        },
+        ()=>{//promise返回的是失败的回调
+          console.log('点击了取消')
+        }
+      )
+
+    }
   }
 }
 </script>
