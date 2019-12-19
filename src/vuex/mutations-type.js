@@ -11,3 +11,9 @@ export const RESET_TOKEN = 'reset_token'
 export const RECEIVE_GOODS = 'receive_goods'
 export const RECEIVE_RATINGS = 'receive_ratings'
 export const RECEIVE_INFO = 'receive_info'
+//添加商品的数量
+export const ADD_FOOD_COUNT = 'add_food_count'
+export const  REDUCE_FOOD_COUNT = 'reduce_food_count'
+
+
+export const  CLEAR_ALL = 'clear_all'

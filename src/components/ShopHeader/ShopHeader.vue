@@ -6,7 +6,7 @@
         <i class="iconfont icon-arrow_left"/>
       </a>
     </nav>
-    <div class="shop-content">
+    <div class="shop-content " @click="showHeader = true">
       <img :src="info.avatar">
       <div class="header-content">
         <h2 class="content-title">
@@ -28,20 +28,21 @@
         <p class="shop-notice">{{info.bulletin}}</p>
       </div>
     </div>
+    <!-- 加上过渡效果 -->
     <div class="shop-header-discounts" v-if="info.supports" @click='isShowDetail=true'>
       <div class="discounts-left">
         <div class="activity" :class="supportClasses[info.supports[0].type]">
           <span class="content-tag">
             <span class="mini-tag">{{info.supports[0].name}}</span>
           </span>
-          <span class="activity-content">{{info.supports[0].content}}</span>
+          <span class="activity-content ellipsis">{{info.supports[0].content}}</span>
         </div>
       </div>
       <div class="discounts-right">
         {{info.supports.length}}个优惠
       </div>
     </div>
-    <div class="shop-brief-modal" style="display: none;">
+    <div class="shop-brief-modal" v-show="showHeader">
       <div class="brief-modal-content">
         <h2 class="content-title">
           <span class="content-tag">
@@ -77,40 +78,40 @@
             {{info.bulletin}}
           </div>
         <div class="mask-footer">
-          <span class="iconfont icon-close"></span>
+          <span class="iconfont icon-close" @click="showHeader = false"></span>
         </div>
       </div>
-      <div class="brief-modal-cover"></div>
+      <div class="brief-modal-cover" @click="showHeader = false"></div>
     </div>
-    <div class="activity-sheet" style="display: none;">
-      <div class="activity-sheet-content">
+    <div class="activity-sheet" v-show="isShowDetail">
+      <div class="activity-sheet-content" v-if="info.supports">
         <h2 class="activity-sheet-title">
         优惠活动</h2>
         <ul class="list">
           <li class="activity-item activity-green">
             <span class="content-tag">
-              <span class="mini-tag">首单</span>
+              <span class="mini-tag">{{info.supports[0].name}}</span>
             </span>
-            <span class="activity-content">新用户下单立减17元(不与其它活动同享)</span>
+            <span class="activity-content">{{info.supports[0].content}}</span>
           </li>
           <li class="activity-item activity-red">
             <span class="content-tag">
-              <span class="mini-tag">满减</span>
+              <span class="mini-tag">{{info.supports[1].name}}</span>
             </span>
-            <span class="activity-content">满35减19，满65减35</span>
+            <span class="activity-content">{{info.supports[1].content}}</span>
           </li>
           <li class="activity-item activity-orange">
             <span class="content-tag">
-              <span class="mini-tag">特价</span>
+              <span class="mini-tag" >{{info.supports[2].name}}</span>
             </span>
-            <span class="activity-content">【立减19.5元】欢乐小食餐</span>
+            <span class="activity-content ">{{info.supports[2].content}}</span>
           </li>
         </ul>
-        <div class="activity-sheet-close">
+        <div class="activity-sheet-close" @click="isShowDetail=false">
           <span class="iconfont icon-close"></span>
         </div>
       </div>
-      <div class="activity-sheet-cover"></div>
+      <div class="activity-sheet-cover" @click="isShowDetail=false"></div>
     </div>
   </div>
 </template>
@@ -121,12 +122,13 @@ import {mapState} from 'vuex'
 export default {
   data(){
     return {
-      isShowDetail:'false',
+      isShowDetail:false,
+      showHeader:false,
       supportClasses: ['activity-green', 'activity-red', 'activity-orange'],
     }
   },
   computed:{
-    ...mapState(['info']),
+    ...mapState({info:state=>state.shop.info})
    
   }
 }

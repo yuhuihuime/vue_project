@@ -119,7 +119,12 @@ export default {
  
   },
   computed:{
-    ...mapState(['address','shops','categorys']),
+    //'address','shops','categorys'
+    ...mapState({
+      address: state=>state.msite.address,
+      shops: state=>state.msite.shops,
+      categorys: state=>state.msite.categorys      
+    }),
     
     categorysArr(){
       let bigArray=[]
